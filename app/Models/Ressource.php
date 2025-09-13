@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ressource extends Model
 {
-    protected $fillable = ['nom', 'type'];
+    use HasFactory;
 
-    /**
-     * Une ressource peut être utilisée par plusieurs sessions.
-     */
-    public function sessions()
-    {
-        return $this->belongsToMany(Session::class, 'session_ressource');
-    }
+    protected $fillable = [
+        'nom',
+        'type'
+    ];
 }

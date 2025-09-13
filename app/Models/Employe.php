@@ -2,17 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employe extends Model
 {
-    protected $fillable = ['nom', 'prenom', 'email', 'poste'];
+    use HasFactory;
 
-    /**
-     * Un employé peut avoir plusieurs sessions.
-     */
-    public function sessions()
-    {
-        return $this->hasMany(Session::class);
-    }
+    protected $fillable = [
+        'nom',
+        'prenom',
+        'email',
+        'poste'
+    ];
 }

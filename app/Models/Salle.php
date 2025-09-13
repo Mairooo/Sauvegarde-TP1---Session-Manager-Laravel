@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Projet extends Model
+class Salle extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['nom', 'description', 'date_debut', 'date_fin'];
+    protected $fillable = ['nom', 'capacite'];
     
-    public function sessions()
+    public function workSessions()
     {
         return $this->hasMany(WorkSession::class);
     }

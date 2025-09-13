@@ -2,34 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-    protected $table = 'work_sessions';
-    protected $fillable = ['date', 'heure_debut', 'heure_fin', 'status', 'employe_id', 'projet_id'];
+    use HasFactory;
 
-    /**
-     * Une session appartient à un employé.
-     */
-    public function employe()
-    {
-        return $this->belongsTo(Employe::class);
-    }
+    protected $fillable = [
+        'employe_id',
+        'projet_id',
+        'date',
+        'heure_debut',
+        'heure_fin',
+        'status'
+    ];
 
-    /**
-     * Une session appartient à un projet.
-     */
-    public function projet()
-    {
-        return $this->belongsTo(Projet::class);
-    }
-
-    /**
-     * Une session peut utiliser plusieurs ressources.
-     */
-    public function ressources()
-    {
-        return $this->belongsToMany(Ressource::class, 'session_ressource');
-    }
+    protected $casts = [
+        'date' => 'date',
+        'heure_debut' => 'datetime:H:i',
+        'heure_fin' => 'datetime:H:i'
+    ];
 }

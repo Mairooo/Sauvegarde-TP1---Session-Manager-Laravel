@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('work_sessions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Remplace employe_id
+            $table->foreignId('projet_id')->constrained('projets')->onDelete('cascade');
+            $table->foreignId('salle_id')->constrained('salles')->onDelete('cascade'); // Nouvelle contrainte
             $table->date('date');
             $table->time('heure_debut');
             $table->time('heure_fin');
-            $table->enum('status', ['planifiée', 'en cours', 'terminée', 'annulée']);
-            $table->foreignId('employe_id')->constrained('employes')->onDelete('cascade');
-            $table->foreignId('projet_id')->constrained('projets')->onDelete('cascade');
+            $table->enum('status', ['planifiee', 'en_cours', 'terminee', 'annulee']);
             $table->timestamps();
         });
     }
